@@ -65,8 +65,6 @@ if [ -f "$HOME/.zshrc" ]; then
     mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
 fi
 
-# Symlink the _zshrc file
-ln -s "$(pwd)/zsh/_zshrc" "$HOME/.zshrc"
 
 
 
@@ -109,6 +107,9 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+# Symlink the _zshrc file
+ln -s "$(pwd)/zsh/_zshrc" "$HOME/.zshrc"
+
 # Check if ~/.config exists and back it up
 if [ -d "$HOME/.config" ]; then
     echo "Existing .config folder found, backing up..."
@@ -116,15 +117,6 @@ if [ -d "$HOME/.config" ]; then
     rm -rf "$HOME/.config"
 fi
 
-# Create .config directory if it doesn't exist after backup
-mkdir -p "$HOME/.config/nvim"
-
-# Symlink contents of config folder to ~/.config
-# Note: Adjust this if there are nested directories within config
-for config in ./config/nvim/*; do
-    config_name=$(basename "$config")
-    ln -s "$(pwd)/config/nvim/$config_name" "$HOME/.config/nvim/$config_name"
-done
 
 # Define which Neovim CoC extensions should be installed
 COC_EXTENSIONS="coc-css coc-eslint coc-html coc-json coc-sh coc-sql coc-tsserver coc-yaml coc-pyright"
@@ -156,6 +148,16 @@ cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --
 # Additional setup for Neovim or other tools can go here
 # For example, setting up Python debugger for Neovim
 # Ensure you have the required setup or script for installing Python debuggers or other tools
+
+# Create .config directory if it doesn't exist after backup
+mkdir -p "$HOME/.config/nvim"
+
+# Symlink contents of config folder to ~/.config
+# Note: Adjust this if there are nested directories within config
+for config in ./config/nvim/*; do
+    config_name=$(basename "$config")
+    ln -sf "$(pwd)/config/nvim/$config_name" "$HOME/.config/nvim/$config_name"
+done
 
 echo "Neovim and CoC extensions setup complete."
 
