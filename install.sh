@@ -150,13 +150,13 @@ cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --
 # Ensure you have the required setup or script for installing Python debuggers or other tools
 
 # Create .config directory if it doesn't exist after backup
-mkdir -p "$HOME/.config/nvim"
+mkdir -p "$HOME/.config"
 
 # Symlink contents of config folder to ~/.config
 # Note: Adjust this if there are nested directories within config
-for config in ./config/nvim/*; do
+for config in ./config/*; do
     config_name=$(basename "$config")
-    ln -sf "$(pwd)/config/nvim/$config_name" "$HOME/.config/nvim/$config_name"
+    ln -sf "$(pwd)/config/$config_name" "$HOME/.config/$config_name"
 done
 
 echo "Neovim and CoC extensions setup complete."
