@@ -68,8 +68,8 @@ fi
 # Symlink the _zshrc file
 ln -s "$(pwd)/zsh/_zshrc" "$HOME/.zshrc"
 
-# Define Neovim CoC extensions to be installed
-COC_EXTENSIONS="coc-css coc-eslint coc-html coc-json coc-sh coc-sql coc-tsserver coc-yaml coc-pyright"
+
+
 
 # Function to install Neovim on Debian-based systems from source
 install_neovim_debian() {
@@ -116,7 +116,6 @@ if [ -d "$HOME/.config" ]; then
     rm -rf "$HOME/.config"
 fi
 
-
 # Create .config directory if it doesn't exist after backup
 mkdir -p "$HOME/.config"
 
@@ -127,4 +126,38 @@ for config in ./config/*; do
     ln -s "$(pwd)/config/$config_name" "$HOME/.config/$config_name"
 done
 
+# Define which Neovim CoC extensions should be installed
+COC_EXTENSIONS="coc-css coc-eslint coc-html coc-json coc-sh coc-sql coc-tsserver coc-yaml coc-pyright"
+
+# Cooperate Node.js with Neovim
+npm install -g neovim
+
+# Create directory for Neovim spell check dictionaries
+# mkdir -p $HOME/.local/share/nvim/site/spell
+
+# Copy Neovim dictionaries
+# Adjust the source path according to where you keep your spell files
+# cp -r ./spell/* $HOME/.local/share/nvim/site/spell/
+
+# Install Vim Plug
+curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install Neovim extensions
+nvim --headless +PlugInstall +qall
+
+# Prepare for COC extensions installation
+mkdir -p $HOME/.config/coc/extensions && \
+echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
+
+# Install COC extensions
+cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
+
+# Additional setup for Neovim or other tools can go here
+# For example, setting up Python debugger for Neovim
+# Ensure you have the required setup or script for installing Python debuggers or other tools
+
+echo "Neovim and CoC extensions setup complete."
+
 echo "Installation and configuration complete."
+
