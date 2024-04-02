@@ -161,6 +161,10 @@ echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
 # Install COC extensions
 cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
 
+cd $HOME/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
+echo "Neovim and CoC extensions setup complete."
+
+
 echo "Neovim and CoC extensions setup complete."
 
 echo "Installation and configuration complete."
