@@ -135,6 +135,22 @@ npm install -g neovim
 curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+
+
+# Additional setup for Neovim or other tools can go here
+# For example, setting up Python debugger for Neovim
+# Ensure you have the required setup or script for installing Python debuggers or other tools
+
+# Create .config directory if it doesn't exist after backup
+mkdir -p "$HOME/.config/nvim"
+
+# Symlink contents of config folder to ~/.config
+# Note: Adjust this if there are nested directories within config
+for config in ./config/*; do
+    config_name=$(basename "$config")
+    ln -sf "$(pwd)/config/$config_name" "$HOME/.config/nvim/$config_name"
+done
+
 # Install Neovim extensions
 nvim --headless +PlugInstall +qall
 
@@ -144,20 +160,6 @@ echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
 
 # Install COC extensions
 cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
-
-# Additional setup for Neovim or other tools can go here
-# For example, setting up Python debugger for Neovim
-# Ensure you have the required setup or script for installing Python debuggers or other tools
-
-# Create .config directory if it doesn't exist after backup
-mkdir -p "$HOME/.config"
-
-# Symlink contents of config folder to ~/.config
-# Note: Adjust this if there are nested directories within config
-for config in ./config/*; do
-    config_name=$(basename "$config")
-    ln -sf "$(pwd)/config/$config_name" "$HOME/.config/$config_name"
-done
 
 echo "Neovim and CoC extensions setup complete."
 
