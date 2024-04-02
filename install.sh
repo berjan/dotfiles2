@@ -117,13 +117,13 @@ if [ -d "$HOME/.config" ]; then
 fi
 
 # Create .config directory if it doesn't exist after backup
-mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/nvim"
 
 # Symlink contents of config folder to ~/.config
 # Note: Adjust this if there are nested directories within config
-for config in ./config/*; do
+for config in ./config/nvim/*; do
     config_name=$(basename "$config")
-    ln -s "$(pwd)/config/$config_name" "$HOME/.config/$config_name"
+    ln -s "$(pwd)/config/nvim/$config_name" "$HOME/.config/nvim/$config_name"
 done
 
 # Define which Neovim CoC extensions should be installed
