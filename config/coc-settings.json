@@ -1,4 +1,3 @@
-{
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "html",
@@ -7,7 +6,20 @@
     "sh",
     "sql",
     "yaml",
+    "python",
   ],
   "codeLens.enable": true,
-  "yaml.format.enable": true
+  "yaml.format.enable": true,
+  "python.formatting.provider": "black", // Specify "black" as the formatter for Python
+  "python.formatting.blackPath": "black", // Optional: Specify the path to "black" if not in $PATH
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "79",
+    "--preview",
+    "--enable-unstable-feature",
+    "string_processing"
+  ],
+  "[python]": {
+    "editor.formatOnSave": true // Ensure format on save is enabled for Python files
+  }
 }
