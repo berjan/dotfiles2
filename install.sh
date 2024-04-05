@@ -144,9 +144,9 @@ mkdir -p "$HOME/.config/nvim"
 
 # Symlink contents of config folder to ~/.config
 # Note: Adjust this if there are nested directories within config
-for config in ./config/*; do
+for config in /root/repositories/dotfiles2/config/*; do
     config_name=$(basename "$config")
-    ln -sf "$(pwd)/config/$config_name" "$HOME/.config/nvim/$config_name"
+    ln -sf "/root/repositories/dotfiles2/config/$config_name" "$HOME/.config/nvim/$config_name"
 done
 
 # Install Neovim extensions
