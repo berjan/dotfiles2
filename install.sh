@@ -1,5 +1,6 @@
 #!/usr/bin/zsh
 
+
 # Ensure the script is executed with superuser privileges on Debian-based systems
 if [ "$(id -u)" -ne 0 ] && [ -f /etc/debian_version ]; then
   echo "This script must be run as root on Debian-based systems" 1>&2
@@ -60,9 +61,9 @@ if ! command -v zsh &> /dev/null; then
 fi
 
 # Backup existing .zshrc if it exists
-if [ -f "$HOME/.zshrc" ]; then
+if [ -f "/root/.zshrc" ]; then
     echo "Backing up existing .zshrc to .zshrc.backup"
-    mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
+    mv "/root/.zshrc" "/root/.zshrc.backup"
 fi
 
 
@@ -140,7 +141,7 @@ curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # Ensure you have the required setup or script for installing Python debuggers or other tools
 
 # Create .config directory if it doesn't exist after backup
-mkdir -p "$HOME/.config/nvim"
+mkdir -p "/root/.config/nvim"
 
 # Symlink contents of config folder to ~/.config
 # Note: Adjust this if there are nested directories within config
@@ -153,8 +154,8 @@ done
 nvim --headless +PlugInstall +qall
 
 # Prepare for COC extensions installation
-mkdir -p $HOME/.config/coc/extensions && \
-echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
+mkdir -p /root/.config/coc/extensions && \
+echo '{"dependencies":{}}' > /root/.config/coc/extensions/package.json
 
 # Install COC extensions
 cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
