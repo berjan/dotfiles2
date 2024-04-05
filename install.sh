@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 # Ensure the script is executed with superuser privileges on Debian-based systems
 if [ "$(id -u)" -ne 0 ] && [ -f /etc/debian_version ]; then
