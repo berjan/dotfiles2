@@ -159,7 +159,7 @@ echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
 # Install COC extensions
 cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
 
-#cd $HOME/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
+cd /root/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
 
 # Symlink the _zshrc file
 ln -sf "/root/repositories/dotfiles2/zsh/_zshrc" "$HOME/.zshrc"
