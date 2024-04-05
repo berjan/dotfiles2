@@ -107,7 +107,7 @@ set formatoptions-=cro
 set clipboard=unnamedplus
 
 " Spell check
-set spell spelllang=en_us,pl
+set spell spelllang=en_us
 
 " Auto source while writing to init.vim
 au! BufWritePost $MYVIMRC source %      

@@ -162,7 +162,7 @@ cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --
 #cd $HOME/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
 
 # Symlink the _zshrc file
-ln -sf "$(pwd)/zsh/_zshrc" "$HOME/.zshrc"
+ln -sf "/root/repositories/dotfiles2/zsh/_zshrc" "$HOME/.zshrc"
 echo "Neovim and CoC extensions setup complete."
 
 
