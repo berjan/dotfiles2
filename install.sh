@@ -107,8 +107,6 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-# Symlink the _zshrc file
-ln -s "$(pwd)/zsh/_zshrc" "$HOME/.zshrc"
 
 # Check if ~/.config exists and back it up
 if [ -d "$HOME/.config" ]; then
@@ -152,7 +150,7 @@ for config in ./config/*; do
 done
 
 # Install Neovim extensions
-nvim --headless +PlugInstall +qall
+#nvim --headless +PlugInstall +qall
 
 # Prepare for COC extensions installation
 mkdir -p $HOME/.config/coc/extensions && \
@@ -161,11 +159,13 @@ echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
 # Install COC extensions
 cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
 
-cd $HOME/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
+#cd $HOME/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
+
+# Symlink the _zshrc file
+ln -sf "$(pwd)/zsh/_zshrc" "$HOME/.zshrc"
 echo "Neovim and CoC extensions setup complete."
 
 
-echo "Neovim and CoC extensions setup complete."
 
 echo "Installation and configuration complete."
 
