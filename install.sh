@@ -159,6 +159,9 @@ echo '{"dependencies":{}}' > $HOME/.config/coc/extensions/package.json
 # Install COC extensions
 cd $HOME/.config/coc/extensions && npm install $COC_EXTENSIONS --global-style --only=prod
 
+# Install Neovim extensions
+nvim --headless +PlugInstall +qall
+
 cd /root/.config/nvim/plugins/vimspector && python3 install_gadget.py --enable-python
 
 # Symlink the _zshrc file
