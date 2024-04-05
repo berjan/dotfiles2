@@ -150,7 +150,7 @@ for config in /root/repositories/dotfiles2/config/*; do
 done
 
 # Install Neovim extensions
-#nvim --headless +PlugInstall +qall
+nvim --headless +PlugInstall +qall
 
 # Prepare for COC extensions installation
 mkdir -p $HOME/.config/coc/extensions && \
